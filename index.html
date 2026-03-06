@@ -610,6 +610,184 @@
             margin-bottom: 0.5rem;
         }
 
+        /* ─── COACHING STAFF ─── */
+        .coaching-section {
+            max-width: 1440px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .coaching-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .coach-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+            animation: cardIn 0.5s ease both;
+            transition: transform 0.35s cubic-bezier(0.2,0,0,1), box-shadow 0.35s ease, border-color 0.35s ease;
+        }
+        .coach-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(220,47,63,0.4);
+            box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(220,47,63,0.1), 0 8px 24px var(--red-glow);
+        }
+
+        /* Diagonal red accent stripe */
+        .coach-card::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--red), var(--red-dark));
+            opacity: 0;
+            transition: opacity 0.35s;
+        }
+        .coach-card:hover::after { opacity: 1; }
+
+        .coach-inner {
+            display: flex;
+            align-items: stretch;
+            gap: 0;
+        }
+
+        /* Left colour slab */
+        .coach-slab {
+            width: 6px;
+            background: linear-gradient(180deg, var(--red), var(--red-dark));
+            flex-shrink: 0;
+        }
+
+        .coach-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .coach-top {
+            display: flex;
+            align-items: center;
+            gap: 1.4rem;
+            padding: 1.6rem 1.6rem 1.2rem;
+        }
+
+        /* Avatar */
+        .coach-avatar {
+            width: 78px;
+            height: 78px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #2a0608, #0d0000);
+            border: 2px solid rgba(220,47,63,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            color: var(--red);
+            flex-shrink: 0;
+            position: relative;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .coach-card:hover .coach-avatar {
+            border-color: var(--red);
+            box-shadow: 0 0 22px var(--red-glow), inset 0 0 16px rgba(220,47,63,0.08);
+        }
+        /* Role ring */
+        .coach-avatar::before {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            border-radius: 50%;
+            border: 1px dashed rgba(220,47,63,0.25);
+            animation: spin 12s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .coach-text { flex: 1; }
+
+        .coach-role-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.25rem 0.65rem;
+            background: rgba(220,47,63,0.12);
+            border: 1px solid rgba(220,47,63,0.3);
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 0.55rem;
+        }
+        .coach-role-tag::before {
+            content: '';
+            width: 5px; height: 5px;
+            background: var(--red);
+            border-radius: 50%;
+            animation: glowPulse 1.5s ease infinite;
+        }
+
+        .coach-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            letter-spacing: 2.5px;
+            line-height: 1;
+            color: var(--white);
+            transition: color 0.3s;
+        }
+        .coach-card:hover .coach-name { color: var(--red); }
+
+        .coach-occupation {
+            margin-top: 0.3rem;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            color: var(--muted);
+            text-transform: uppercase;
+        }
+
+        /* Bottom contact bar */
+        .coach-footer {
+            border-top: 1px solid var(--border);
+            padding: 0.9rem 1.6rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            background: rgba(0,0,0,0.2);
+        }
+        .coach-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            font-size: 0.82rem;
+            color: var(--light);
+        }
+        .coach-contact-item svg { color: var(--red); flex-shrink: 0; }
+
+        .coach-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.22rem 0.65rem;
+            background: rgba(220,47,63,0.08);
+            border: 1px solid rgba(220,47,63,0.2);
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: rgba(220,47,63,0.85);
+        }
+
         /* ─── FOOTER ─── */
         footer {
             text-align: center;
@@ -703,13 +881,71 @@
     </div>
 </div>
 
+<!-- COACHING STAFF -->
+<div class="coaching-section">
+    <div class="section-label">Coaching Staff</div>
+    <div class="coaching-grid">
+
+        <!-- Head Coach -->
+        <div class="coach-card" style="animation-delay:0.1s">
+            <div class="coach-inner">
+                <div class="coach-slab"></div>
+                <div class="coach-content">
+                    <div class="coach-top">
+                        <div class="coach-avatar">SC</div>
+                        <div class="coach-text">
+                            <div class="coach-role-tag">Head Coach</div>
+                            <div class="coach-name">Stephen Olaniyan</div>
+                            <div class="coach-occupation">Data Analyst</div>
+                        </div>
+                    </div>
+                    <div class="coach-footer">
+                        <div class="coach-contact-item">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012.04 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+                            08081063852
+                        </div>
+                        <div class="coach-contact-item">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3H8a2 2 0 00-2 2v2h12V5a2 2 0 00-2-2z"/></svg>
+                            <span class="coach-badge">Team Lead — Social Media</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Assistant Coach -->
+        <div class="coach-card" style="animation-delay:0.2s">
+            <div class="coach-inner">
+                <div class="coach-slab"></div>
+                <div class="coach-content">
+                    <div class="coach-top">
+                        <div class="coach-avatar">EO</div>
+                        <div class="coach-text">
+                            <div class="coach-role-tag">Assistant Coach</div>
+                            <div class="coach-name">Ejiro Onose</div>
+                            <div class="coach-occupation">Software Engineer</div>
+                        </div>
+                    </div>
+                    <div class="coach-footer">
+                        <div class="coach-contact-item">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012.04 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+                            08172581863
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 <footer>LAKESIDE FC &nbsp;•&nbsp; SEASON 2026 &nbsp;•&nbsp; ALL RIGHTS RESERVED</footer>
 
 <script>
 const playerData = {
     "stats": {
-        "totalPlayers": 21,
-        "positions": { "Goalkeeper": 0, "Defender": 7, "Midfielder": 11, "Forward": 3 }
+        "totalPlayers": 23,
+        "positions": { "Goalkeeper": 0, "Defender": 7, "Midfielder": 11, "Forward": 5 }
     },
     "players": [
         { "id": 1, "firstName": "Chukwuma", "lastName": "Chukwuwike", "jerseyName": "Chuks", "phone": "8082724922", "email": "darvidchuks@gmail.com", "age": 31, "position": "Right Back (RB)", "secondaryPosition": "Central Midfielder (CM)", "foot": "Right", "height": "178cm", "weight": "65", "occupation": "Filmmaker / Web Designer", "serviceUnit": "Photography", "emergencyContact": "David", "emergencyPhone": "08082724922" },
@@ -732,7 +968,9 @@ const playerData = {
         { "id": 18, "firstName": "Joel", "lastName": "Mgbeafulu", "jerseyName": "Joel", "phone": "9035335586", "email": "mgbeafulujoel5@gmail.com", "age": 23, "position": "Defensive Midfielder (CDM)", "secondaryPosition": "Striker/Center Forward (ST/CF)", "foot": "Both", "height": "178cm", "weight": "65", "occupation": "Freelance", "serviceUnit": "N/A", "emergencyContact": "Simon Mgbeafulu", "emergencyPhone": "08102759019" },
         { "id": 19, "firstName": "Uyi", "lastName": "Mark", "jerseyName": "Mark III", "phone": "7041405101", "email": "mark.the3rdd@gmail.com", "age": 28, "position": "Defensive Midfielder (CDM)", "secondaryPosition": "Right Back (RB)", "foot": "Right", "height": "170cm", "weight": "—", "occupation": "Ad Hoc Staff", "serviceUnit": "CCW", "emergencyContact": "Toyosi", "emergencyPhone": "09076385075" },
         { "id": 20, "firstName": "Jude", "lastName": "Adagbon", "jerseyName": "Jude", "phone": "8078020751", "email": "jude13976@gmail.com", "age": 25, "position": "Right Winger (RW)", "secondaryPosition": "Striker/Center Forward (ST/CF)", "foot": "Both", "height": "170cm", "weight": "70", "occupation": "Tech Instructor", "serviceUnit": "Ambiance", "emergencyContact": "David", "emergencyPhone": "08107994735" },
-        { "id": 21, "firstName": "Emmanuel", "lastName": "Salau", "jerseyName": "Salau", "phone": "8056534591", "email": "emmanuelsalaui@gmail.com", "age": 30, "position": "Defensive Midfielder (CDM)", "secondaryPosition": "Center Back (CB)", "foot": "Right", "height": "178cm", "weight": "80", "occupation": "Auditor", "serviceUnit": "Future Chorister", "emergencyContact": "Susan Salau", "emergencyPhone": "08056534591" }
+        { "id": 21, "firstName": "Emmanuel", "lastName": "Salau", "jerseyName": "Salau", "phone": "8056534591", "email": "emmanuelsalaui@gmail.com", "age": 30, "position": "Defensive Midfielder (CDM)", "secondaryPosition": "Center Back (CB)", "foot": "Right", "height": "178cm", "weight": "80", "occupation": "Auditor", "serviceUnit": "Future Chorister", "emergencyContact": "Susan Salau", "emergencyPhone": "08056534591" },
+        { "id": 22, "firstName": "Mayowa", "lastName": "Sodipo", "jerseyName": "Mayor", "phone": "08024057418", "email": "Sodipomayowa7@gmail.com", "age": 27, "position": "Left Winger (LW)", "secondaryPosition": "Left Back (LB), Right Back (RB)", "foot": "Right", "height": "172cm", "weight": "68", "occupation": "Software Engineer", "serviceUnit": "Media and Tech", "emergencyContact": "Mrs Arinola Sodipo (Spouse)", "emergencyPhone": "09047535161" },
+        { "id": 23, "firstName": "Wisdom", "lastName": "Iwunwa", "jerseyName": "ThePrincipalThing", "phone": "07089589218", "email": "wisdomiwunwa@gmail.com", "age": 29, "position": "Striker/Center Forward (ST/CF)", "secondaryPosition": "Center Back (CB)", "foot": "Right", "height": "183cm", "weight": "98", "occupation": "Web Dev", "serviceUnit": "Ambience", "emergencyContact": "Uche (Brother)", "emergencyPhone": "09031583325" }
     ]
 };
 
